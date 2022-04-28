@@ -2,7 +2,7 @@
 
 <div class="py-5">
     <div class="container">
-        <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-end mb-5">
             <button type="button" class="btn btn-primary pull-right" data-bs-toggle="modal" data-bs-target="#addGameModal">
                 Add Game
             </button>
@@ -28,7 +28,7 @@
                 </div>
             </div>
         </div>
-        <table class="table">
+        <table class="table" id="games">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
