@@ -43,7 +43,13 @@
                         <th scope="row"><?= $game['id']; ?></th>
                         <td><?= $game['name']; ?></td>
                         <td><?= $game['votes']; ?></td>
-                        <td></td>
+                        <td>
+                            <form action="." method="post">
+                                <input type="hidden" name="game_id" value="<?= $game['id']; ?>">
+                                <input type="submit" class="btn btn-success" name="action" value="Upvote">
+                                <input type="submit" class="btn btn-warning" name="action" value="Downvote">
+                            </form>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
