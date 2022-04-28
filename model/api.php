@@ -1,13 +1,16 @@
 <?php
 
-function get_games()
+function curl($method, $params = false)
 {
-    $url = 'https://codechallenge.essensedesigns.info/games/list';
-
+    $url = 'https://codechallenge.essensedesigns.info/games/' . $method;
     $curl = curl_init($url);
 
     curl_setopt($curl, CURLOPT_POST, true);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+    if ($params) {
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
+    }
 
     $server_response = curl_exec($curl);
 
@@ -16,88 +19,33 @@ function get_games()
     $server_response = json_decode($server_response, true);
 
     return $server_response;
+}
+
+function get_games()
+{
+    return curl('list');
 }
 
 function add_game($game_name)
 {
     $params = ['name' => $game_name];
-
-    $url = 'https://codechallenge.essensedesigns.info/games/add';
-
-    $curl = curl_init($url);
-
-    curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
-
-    $server_response = curl_exec($curl);
-
-    curl_close($curl);
-
-    $server_response = json_decode($server_response, true);
-
-    return $server_response;
+    return curl('add', $params);
 }
 
 function upvote($game_id)
 {
     $params = ['id' => $game_id];
-
-    $url = 'https://codechallenge.essensedesigns.info/games/vote';
-
-    $curl = curl_init($url);
-
-    curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
-
-    $server_response = curl_exec($curl);
-
-    curl_close($curl);
-
-    $server_response = json_decode($server_response, true);
-
-    return $server_response;
+    return curl('vote', $params);
 }
 
 function downvote($game_id)
 {
     $params = ['id' => $game_id];
-
-    $url = 'https://codechallenge.essensedesigns.info/games/removeVote';
-
-    $curl = curl_init($url);
-
-    curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
-
-    $server_response = curl_exec($curl);
-
-    curl_close($curl);
-
-    $server_response = json_decode($server_response, true);
-
-    return $server_response;
+    return curl('removeVote', $params);
 }
 
 function remove($game_id)
 {
     $params = ['id' => $game_id];
-
-    $url = 'https://codechallenge.essensedesigns.info/games/remove';
-
-    $curl = curl_init($url);
-
-    curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
-
-    $server_response = curl_exec($curl);
-
-    curl_close($curl);
-
-    $server_response = json_decode($server_response, true);
-
-    return $server_response;
+    return curl('remove', $params);
 }
