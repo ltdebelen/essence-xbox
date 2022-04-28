@@ -48,6 +48,7 @@
                                 <input type="hidden" name="game_id" value="<?= $game['id']; ?>">
                                 <input type="submit" class="btn btn-success" name="action" value="Upvote">
                                 <input type="submit" class="btn btn-warning" name="action" value="Downvote">
+                                <input type="submit" class="btn btn-danger" name="action" value="Remove">
                             </form>
                         </td>
                     </tr>
