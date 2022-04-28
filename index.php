@@ -18,6 +18,10 @@ switch ($action) {
         $response = downvote($game_id);
         header("Location: .");
         break;
+    case "Remove":
+        $response = remove($game_id);
+        header("Location: .");
+        break;
     default:
         $games = get_games();
         include('view/games_list.php');
